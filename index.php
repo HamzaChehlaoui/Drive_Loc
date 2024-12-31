@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +50,7 @@
 
         <!-- Image Section -->
         <div class="w-1/2 shadow-2xl">
-            <img class="object-cover w-full h-screen hidden md:block" src="24520f63-8ca1-48cd-93f1-c8df7d05fcf3.jpeg">
+            <img class="object-cover w-full h-screen hidden md:block" src="img_sit/24520f63-8ca1-48cd-93f1-c8df7d05fcf3.jpeg">
         </div>
     </div>
 

@@ -52,22 +52,22 @@
     <div class="w-full flex flex-wrap">
         <!-- Image Section -->
         <div class="w-1/2 shadow-2xl slide-in-left ">
-            <img class="object-cover w-full h-screen md:block" src="994894e4-21a3-40d4-95c1-4d36e7b57c2b.jpeg" alt="Image">
+            <img class="object-cover w-full h-screen md:block" src="img_sit/994894e4-21a3-40d4-95c1-4d36e7b57c2b.jpeg" alt="Image">
         </div>
   
         <!-- Registration Section -->
         <div class="w-full md:w-1/2 flex flex-col slide-in-right">
             <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
                 <p class="text-center text-3xl">Create an Account</p>
-                <form action="logincon.php" method="POST" class="flex flex-col pt-3 md:pt-8">
+                <form action="insertCont.php" method="POST" class="flex flex-col pt-3 md:pt-8">
                     
                     <div class="flex flex-col pt-4">
-                        <label for="first-name" class="text-lg">First name</label>
-                        <input type="text" name="first-name" id="first-name" placeholder="First name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                        <label for="first-name" class="text-lg">full name</label>
+                        <input type="text" name="nome" id="first-name" placeholder="First name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
                     <div class="flex flex-col pt-4">
-                        <label for="last-name" class="text-lg">Last name</label>
-                        <input type="text" name="last-name" id="last-name" placeholder="Last name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                        <label for="last-name" class="text-lg">Adresse</label>
+                        <input type="text" name="adresse" id="last-name" placeholder="Last name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
                     <div class="flex flex-col pt-4">
                         <label for="email" class="text-lg">Email</label>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="flex flex-col pt-4">
                         <label for="password" class="text-lg">Password</label>
-                        <input type="password" name="password" id="password" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
+                        <input type="password" name="motDepasse" id="password" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline">
                     </div>
 
                     <input type="submit" value="Create Account" name="submit" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
