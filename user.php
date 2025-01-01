@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Black Navbar</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+   
 </head>
 <style>
         /* Fade-in animation */
@@ -50,7 +51,7 @@
         }
 </style>
 
-<body class="bg-gray-100">
+<body class="bg-black text-[#fff]">
 
     <!-- Navbar -->
     <nav class="bg-black text-white py-4">
@@ -73,10 +74,6 @@
             </div>
         </div>
     </nav>
-
-</body>
-</html>
-
     <!-- Image at the Beginning of the Page -->
     <section class="relative">
         <img src="img_sit/4k-wallpaper-sports-cars-on-track-v0-tuocu8x929sa1.jpg" class="h-[600px] w-[100%]">

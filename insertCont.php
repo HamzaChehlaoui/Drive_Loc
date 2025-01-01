@@ -4,7 +4,7 @@ include('Classcreate_cont.php');
 
 if (isset($_POST['submit'])) {
 
-    $db = new Controller(); 
+    $db = new Database(); 
     $user = new User($db);   
     $user->setEmail($_POST['email']);        
     $user->setPassword($_POST['motDepasse']);

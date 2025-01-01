@@ -33,3 +33,42 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+
+    function addVehicleField() {
+      var container = document.getElementById("vehicle-fields-container");
+
+      var newField = document.createElement("div");
+      newField.classList.add("grid", "grid-cols-1", "sm:grid-cols-2", "gap-6", "mb-6");
+
+      newField.innerHTML = `
+        <div>
+          <label for="vehicle-model" class="block text-lg font-medium text-gray-300">Vehicle Model</label>
+          <input type="text" name="vehicle-model[]" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter vehicle model" required>
+        </div>
+       <!-- Dynamic Category Dropdown -->
+          <div>
+            <label for="vehicle-category" class="block text-lg font-medium text-gray-300">Category</label>
+            <select name="vehicle-category[]" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" required>
+              <option value="" disabled selected>Select category</option>
+              <?php foreach ($categories as $category): ?>
+                  <option value="<?php echo $category['idCategorie']; ?>"><?php echo $category['nom']; ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+        <div>
+          <label for="vehicle-price" class="block text-lg font-medium text-gray-300">Price</label>
+          <input type="number" name="vehicle-price[]" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter vehicle price" required>
+        </div>
+        <div>
+          <label for="vehicle-availability" class="block text-lg font-medium text-gray-300">Availability</label>
+          <select name="vehicle-disponible[]" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" required>
+            <option value="available">Available</option>
+            <option value="unavailable">Unavailable</option>
+          </select>
+        </div>
+      `;
+
+      container.appendChild(newField);
+    }
+  

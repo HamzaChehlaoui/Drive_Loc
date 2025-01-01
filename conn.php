@@ -1,40 +1,25 @@
+
 <?php
+class Database {
+    private $host = "localhost";
+    private $db_name = "drive_loc";  
+    private $username = "root";       
+    private $password = "";          
+    private $conn;
 
-class Controller
-{
-   protected  $servername = "localhost";
-   protected $username = "root";
-   protected $password = "";
-   protected $dbname = "drive_loc";
-   public $conn;
-    
-   public function connect()
-   {
-    $this -> conn=null;
-    
-    try {
-        $this -> conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this ->username, $this ->password);
-        
-        $this -> conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        // echo "Connected successfully";
-      } 
-      catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
-      }
-      return $this->conn;
-   }
-   
-    
 
+    public function getConnection() {
+        $this->conn = null;
+        try {
+            $this->conn = new PDO("mysql:host={$this->host};dbname={$this->db_name}", $this->username, $this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch(PDOException $exception) {
+            echo "Connection error: " . $exception->getMessage();
+        }
+        return $this->conn;
+    }
 }
-
-$db = new Controller();
-
-if($db->connect()){
-  // echo "connect";
-}else{
-  echo "pas Connction";
-}
+?>
 
 
 

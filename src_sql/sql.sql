@@ -21,15 +21,15 @@ CREATE TABLE User (
 
 CREATE TABLE Categorie (
         idCategorie INT AUTO_INCREMENT PRIMARY KEY ,
-        nom VARCHAR(255) NOT NULL ,
-        description TEXT 
+        nom VARCHAR(255) NOT NULL,
+        description TEXT
 );
 
 CREATE TABLE Vehicule (
     idVehicule INT AUTO_INCREMENT PRIMARY KEY ,
     modele VARCHAR(255) NOT NULL ,
     prix   DECIMAL(10, 2) NOT NULL ,
-    disponible BOOLEAN NOT NULL ,
+    disponible varchar(255) NOT NULL ,
     categorieId INT ,
     FOREIGN KEY (categorieId) REFERENCES Categorie(idCategorie)
 );
@@ -54,3 +54,4 @@ CREATE TABLE Reservation (
     FOREIGN KEY (vehiculeId) REFERENCES Vehicule(idVehicule),
     FOREIGN KEY (userId) REFERENCES User(idUser)
 );
+

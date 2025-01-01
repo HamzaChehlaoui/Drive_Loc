@@ -77,7 +77,7 @@ class Auth {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['emeil']) && isset($_POST['motDepasse'])) {
-    $db = new Controller();
+    $db = new Database();
     $user = new User($db);
     $auth = new Auth($user);
     $auth->login($_POST['emeil'], $_POST['motDepasse']);

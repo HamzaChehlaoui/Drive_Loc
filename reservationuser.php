@@ -6,23 +6,23 @@
   <title>Reservation Page</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Set today's date as the minimum selectable date for both pickup and return
+    
     document.addEventListener("DOMContentLoaded", function () {
       var today = new Date();
       var dd = String(today.getDate()).padStart(2, '0');
-      var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); 
       var yyyy = today.getFullYear();
 
       today = yyyy + '-' + mm + '-' + dd;
 
-      // Set the min attribute for the pickup date input
+     
       document.getElementById("pickup_date").setAttribute("min", today);
 
-      // Set the min attribute for the return date input (should be after the pickup date)
+     
       document.getElementById("return_date").setAttribute("min", today);
     });
 
-    // Update the minimum return date based on the pickup date selected
+    
     function updateReturnDate() {
       var pickupDate = document.getElementById("pickup_date").value;
       document.getElementById("return_date").setAttribute("min", pickupDate);
