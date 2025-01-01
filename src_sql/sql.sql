@@ -55,3 +55,5 @@ CREATE TABLE Reservation (
     FOREIGN KEY (userId) REFERENCES User(idUser)
 );
 
+ALTER TABLE vehicule 
+ADD COLUMN img VARCHAR(255);

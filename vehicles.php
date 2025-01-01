@@ -7,6 +7,7 @@ class Vehicle {
     public $category_id; 
     public $price;
     public $disponible;
+    public $img;
 
    
     public function __construct($db) {
@@ -16,8 +17,8 @@ class Vehicle {
     
     public function addMultipleVehicles($vehicles) {
         
-        $query = "INSERT INTO " . $this->table_name . " (modele, categorieId, prix, disponible)
-                  VALUES (:model, :category_id, :price, :disponible)";
+        $query = "INSERT INTO " . $this->table_name . " (modele, categorieId, prix, disponible, img)
+                  VALUES (:model, :category_id, :price, :disponible, :img)";
 
        
         $stmt = $this->conn->prepare($query);
@@ -32,6 +33,7 @@ class Vehicle {
                 $stmt->bindParam(':category_id', $vehicle['category_id']);
                 $stmt->bindParam(':price', $vehicle['price']);
                 $stmt->bindParam(':disponible', $vehicle['disponible']);
+                $stmt->bindParam(':img', $vehicle['img']);
 
                
                 $stmt->execute();

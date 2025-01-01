@@ -46,6 +46,10 @@ document.addEventListener('DOMContentLoaded', function () {
           <label for="vehicle-model" class="block text-lg font-medium text-gray-300">Vehicle Model</label>
           <input type="text" name="vehicle-model[]" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter vehicle model" required>
         </div>
+        <div>
+            <label for="vehicle-img" class="block text-lg font-medium text-gray-300">Img Url</label>
+            <input type="text" name="vehicle-img[]" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter vehicle model" required>
+          </div>
        <!-- Dynamic Category Dropdown -->
           <div>
             <label for="vehicle-category" class="block text-lg font-medium text-gray-300">Category</label>

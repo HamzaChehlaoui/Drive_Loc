@@ -20,6 +20,7 @@ if (isset($_POST['submit'])) {
     $vehicleCategories = $_POST['vehicle-category'];  
     $vehiclePrices = $_POST['vehicle-price'];
     $vehicleAvailabilities = $_POST['vehicle-disponible'];
+    $vehicleimg=$_POST['vehicle-img'];
 
     $vehicles = [];
     foreach ($vehicleModels as $index => $model) {
@@ -27,7 +28,8 @@ if (isset($_POST['submit'])) {
             'model' => $model,
             'category_id' => $vehicleCategories[$index],  
             'price' => $vehiclePrices[$index],
-            'disponible' => $vehicleAvailabilities[$index]
+            'disponible' => $vehicleAvailabilities[$index],
+            'img' =>$vehicleimg[$index]
         ];
     }
 
