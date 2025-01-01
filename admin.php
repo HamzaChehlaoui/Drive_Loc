@@ -128,14 +128,14 @@ $cars = $car->getCars();
                                 <p class="text-gray-400 mb-4">' . $row['prix'] . '</p>
                                 <p class="text-gray-400 mb-4">' . $row['disponible'] . '</p>
                                 <div class="mt-4 flex justify-between">
-                                    <a href="editdish.php?id=' . $row['idVehicule'] . '" class="bg-[#fff] opacity-60">
+                                    <a href="editcare.php?id=' . $row['idVehicule'] . '" class="bg-[#fff] opacity-60">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M15.7734 4.42255L8.01924 12.2706C7.79291 12.4996 7.67974 12.6142 7.60917 12.7552C7.53859 12.8961 7.51521 13.0544 7.46845 13.3709L7.30803 14.4566C7.12534 15.693 7.034 16.3112 7.40145 16.6645C7.7689 17.0178 8.39306 16.9118 9.64137 16.6999L10.7375 16.5139C11.0571 16.4596 11.2168 16.4325 11.3579 16.3593C11.499 16.2861 11.6121 16.1715 11.8385 15.9425L19.5927 8.09446C20.2553 7.42379 20.5866 7.08846 20.5814 6.67712C20.5761 6.26578 20.2363 5.93906 19.5566 5.28563L18.6209 4.38599C17.9412 3.73256 17.6014 3.40584 17.1844 3.4112C16.7674 3.41655 16.4361 3.75188 15.7734 4.42255Z" stroke="black"></path>
                                             <path d="M18.3329 9.22206L14.7773 5.6665" stroke="black"></path>
                                             <path d="M21 21H3" stroke="black" stroke-linecap="round"></path>
                                         </svg>
                                     </a>
-                                    <a href="deletedish.php?id=' . $row['idVehicule'] . '" class="bg-[#fff] opacity-60">
+                                    <a href="deletecare.php?id=' . $row['idVehicule'] . '" class="bg-[#fff] opacity-60">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M5 7L5.29949 14.7868C5.41251 17.7252 5.46902 19.1944 6.40719 20.0972C7.34537 21 8.81543 21 11.7555 21H12.2433C15.1842 21 16.6547 21 17.5928 20.0972C18.531 19.1944 18.5875 17.7252 18.7006 14.7868L19 7" stroke="black" stroke-linecap="round"></path>
                                             <path d="M10 13V16" stroke="black" stroke-linecap="round"></path>
