@@ -36,6 +36,7 @@ if (isset($_POST['submit'])) {
  
     if ($vehicle->addMultipleVehicles($vehicles)) {
         echo "Vehicles added successfully.";
+        header('Location:admin.php');
     } else {
         echo "Failed to add vehicles.";
     }

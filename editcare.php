@@ -51,7 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="mb-4">
                 <label for="available" class="block text-lg font-semibold">Availability</label>
-                <input type="text" name="available" id="available" value="<?php echo htmlspecialchars($row['disponible']); ?>" class="w-full p-3 bg-gray-700 text-white rounded-lg" required>
+                <select name="available" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" required>
+                <option value="available">Available</option>
+                <option value="unavailable">Unavailable</option>
+                </select>
             </div>
             <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded-lg">Update Car</button>
         </form>

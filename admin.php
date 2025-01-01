@@ -116,9 +116,9 @@ $cars = $car->getCars();
         <h2 class="text-3xl font-semibold text-center mb-12">Our Cars</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <?php
-            // Check if there are cars in the database
+            
             if ($cars->rowCount() > 0) {
-                // Loop through each car and display it
+              
                 while($row = $cars->fetch(PDO::FETCH_ASSOC)) {
                     echo '
                         <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">

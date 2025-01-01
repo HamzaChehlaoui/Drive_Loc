@@ -40,6 +40,7 @@ class Car {
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
+    
 }
 
 
