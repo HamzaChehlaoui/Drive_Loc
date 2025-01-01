@@ -8,7 +8,7 @@ class User {
     private $password;
 
     public function __construct($db) {
-        $this->conn = $db->connect();
+        $this->conn = $db->getConnection();
     }
 
     public function setEmail($email) {
