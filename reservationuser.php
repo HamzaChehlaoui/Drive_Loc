@@ -6,7 +6,7 @@
   <title>Reservation Page</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Set today's date as the minimum selectable date
+    // Set today's date as the minimum selectable date for both pickup and return
     document.addEventListener("DOMContentLoaded", function () {
       var today = new Date();
       var dd = String(today.getDate()).padStart(2, '0');
@@ -15,9 +15,18 @@
 
       today = yyyy + '-' + mm + '-' + dd;
 
-      // Set the min attribute for the date input
-      document.getElementById("date").setAttribute("min", today);
+      // Set the min attribute for the pickup date input
+      document.getElementById("pickup_date").setAttribute("min", today);
+
+      // Set the min attribute for the return date input (should be after the pickup date)
+      document.getElementById("return_date").setAttribute("min", today);
     });
+
+    // Update the minimum return date based on the pickup date selected
+    function updateReturnDate() {
+      var pickupDate = document.getElementById("pickup_date").value;
+      document.getElementById("return_date").setAttribute("min", pickupDate);
+    }
   </script>
 </head>
 <body class="bg-black text-white font-sans leading-tight tracking-tight">
@@ -40,21 +49,27 @@
         </div>
       </div>
 
-      <!-- Date and Time Section -->
+      <!-- Pickup and Return Date Section -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
         <div>
-          <label for="date" class="block text-lg font-medium text-gray-300">Reservation Date</label>
-          <input type="date" id="date" name="date" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" required>
+          <label for="pickup_date" class="block text-lg font-medium text-gray-300">Pickup Date</label>
+          <input type="date" id="pickup_date" name="pickup_date" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" required onchange="updateReturnDate()">
         </div>
         <div>
-          <label for="time" class="block text-lg font-medium text-gray-300">Reservation Time</label>
-          <select id="time" name="time" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" required>
-            <option value="12:00">12:00 PM</option>
-            <option value="14:00">2:00 PM</option>
-            <option value="16:00">4:00 PM</option>
-            <option value="18:00">6:00 PM</option>
-            <option value="20:00">8:00 PM</option>
-          </select>
+          <label for="return_date" class="block text-lg font-medium text-gray-300">Return Date</label>
+          <input type="date" id="return_date" name="return_date" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" required>
+        </div>
+      </div>
+
+      <!-- Pickup and Return Locations Section -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label for="pickup_location" class="block text-lg font-medium text-gray-300">Pickup Location</label>
+          <input type="text" id="pickup_location" name="pickup_location" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter pickup location" required>
+        </div>
+        <div>
+          <label for="return_location" class="block text-lg font-medium text-gray-300">Return Location</label>
+          <input type="text" id="return_location" name="return_location" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter return location" required>
         </div>
       </div>
 

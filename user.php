@@ -3,15 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Rental</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-black text-white">
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Black Navbar</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
 </head>
@@ -57,7 +48,8 @@
             transform: scale(1.05); /* Slightly enlarge the card */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
         }
-    </style>
+</style>
+
 <body class="bg-gray-100">
 
     <!-- Navbar -->
@@ -159,52 +151,9 @@
     </div>
 </section>
 
-<section class="container mx-auto py-16 px-4">
-    <h2 class="text-3xl font-semibold text-center mb-12 text-white">Reservation Details</h2>
-    <div class="flex justify-center">
-        <!-- Long Vertical Card -->
-        <div class="bg-black text-white rounded-2xl shadow-xl w-96 h-auto p-8 transform transition duration-300 hover:scale-105 hover:shadow-2xl hover:opacity-90">
-            <!-- Reservation Header -->
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-semibold text-yellow-400">Reservation #12345</h3>
-                <span class="bg-green-500 text-white text-sm font-semibold rounded-full px-4 py-1">Confirmed</span>
-            </div>
-            <!-- Reservation Details -->
-            <div class="space-y-6">
-                <div class="flex justify-between">
-                    <span class="text-gray-400 font-medium">Vehicle:</span>
-                    <span class="text-white">Sedan</span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-gray-400 font-medium">Reservation Date:</span>
-                    <span class="text-white">Jan 5, 2024</span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-gray-400 font-medium">Time:</span>
-                    <span class="text-white">10:00 AM</span>
-                </div>
-                <div class="flex justify-between">
-                    <span class="text-gray-400 font-medium">Customer Name:</span>
-                    <span class="text-white">John Doe</span>
-                </div>
-                <!-- Additional Info (if needed) -->
-                <div class="flex justify-between">
-                    <span class="text-gray-400 font-medium">Pickup Location:</span>
-                    <span class="text-white">Main Street, Downtown</span>
-                </div>
-            </div>
-            <!-- Action Buttons -->
-            <div class="mt-8 flex justify-between">
-                <button class="bg-green-500 text-white rounded-lg py-2 px-6 hover:bg-green-600 transition duration-200">
-                    <i class="fas fa-check-circle mr-2"></i> Confirm
-                </button>
-                <button class="bg-yellow-500 text-white rounded-lg py-2 px-6 hover:bg-yellow-600 transition duration-200">
-                    <i class="fas fa-pencil-alt mr-2"></i> Modify
-                </button>
-            </div>
-        </div>
-    </div>
-</section>
+ 
+
+
 
 
 
@@ -276,7 +225,52 @@
     </div>
 </section>
 
+  <!-- Container for the review section -->
+  <div class="max-w-4xl mx-auto my-12 p-6 bg-gray-800 rounded-lg shadow-lg">
+    <h2 class="text-3xl font-bold text-center text-indigo-400 mb-6">Add Your Review</h2>
 
+    <!-- Review Form -->
+    <form action="#" method="POST">
+      
+      <!-- Car Selection Section (Optional) -->
+      <div class="mb-6">
+        <label for="car" class="block text-lg font-medium text-gray-300">Car Model</label>
+        <select id="car" name="car" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" required>
+          <option value="car1">Car Model 1</option>
+          <option value="car2">Car Model 2</option>
+          <option value="car3">Car Model 3</option>
+        </select>
+      </div>
+
+      <!-- Rating Section -->
+      <div class="mb-6">
+        <label for="rating" class="block text-lg font-medium text-gray-300">Rating (1 to 5 stars)</label>
+        <div class="flex items-center">
+          <!-- Star Rating -->
+          <input type="hidden" id="rating" name="rating" value="0" required>
+
+          <span class="star cursor-pointer text-3xl">★</span>
+          <span class="star cursor-pointer text-3xl">★</span>
+          <span class="star cursor-pointer text-3xl">★</span>
+          <span class="star cursor-pointer text-3xl">★</span>
+          <span class="star cursor-pointer text-3xl">★</span>
+        </div>
+      </div>
+
+      <!-- Review Section -->
+      <div class="mb-6">
+        <label for="review" class="block text-lg font-medium text-gray-300">Your Review</label>
+        <textarea id="review" name="review" rows="4" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Write your review here" required></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex justify-center">
+        <button type="submit" class="w-full sm:w-auto px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+          Submit Review
+        </button>
+      </div>
+    </form>
+  </div>
 
 
 
@@ -285,6 +279,6 @@
     <footer class="bg-gray-800 py-6 mt-16 text-center">
         <p>&copy; 2024 Car Rental. All rights reserved.</p>
     </footer>
-
+<script src="js/script.js"></script>
 </body>
 </html>
