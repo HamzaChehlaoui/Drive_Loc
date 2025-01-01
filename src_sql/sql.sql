@@ -13,7 +13,7 @@ CREATE TABLE User (
     nom VARCHAR(255) NOT NULL ,
     emeil VARCHAR(255) NOT NULL ,
     motDepasse VARCHAR(255) NOT NULL  ,
-    adresse VARCHAR(255) , 
+    adresse VARCHAR(255) ,  
     releId INT ,
     FOREIGN KEY (roleId) REFERENCES Role(idRole)
 
