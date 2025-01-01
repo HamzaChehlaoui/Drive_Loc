@@ -8,7 +8,7 @@ class User {
     private $roleId;
 
     public function __construct($db) {
-        $this->conn = $db->connect();
+        $this->conn = $db->getConnection();
     }
 
     public function setEmail($email) {
@@ -35,7 +35,7 @@ class User {
         if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             return "Invalid email format!";
         }
-            echo 'hamza';
+            
         $stmt = $this->conn->prepare("INSERT INTO user (emeil, motDepasse, nom, adresse, roleId) VALUES (:emeil,:motDepasse, :nom, :adresse, :roleId)");
         
       

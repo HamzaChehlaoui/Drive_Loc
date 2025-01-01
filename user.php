@@ -1,15 +1,3 @@
-<?php
-include('conn.php');
-include('Care.php');
-
-$db = new Database();
-$connection = $db->getConnection();
-
-$car = new Car($connection);
-
-$cars = $car->getCars();
-?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -61,38 +49,56 @@ $cars = $car->getCars();
         .card:hover {
             transform: scale(1.05); /* Slightly enlarge the card */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
-        }
-        .pagination {
-    text-align: center;
-    margin-top: 20px;
+        }    /* Custom styles for black and white accents */
+    .btn-primary {
+      background-color: #000000; /* Black color */
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .btn-primary:hover {
+      background-color: #555555; /* Darker grey for hover effect */
     }
 
-    .pagination a,
-    .pagination .current {
-        margin: 0 5px;
-        padding: 8px 12px;
-        background-color: #ddd;
-        text-decoration: none;
-        color: black;
-        border-radius: 5px;
+  
+    /* Custom black-and-white Section */
+    .black-section {
+      background-color: #333333; /* Dark background */
+      color: white; /* White text */
+      padding: 50px 0;
+      text-align: center;
+      perspective: 1500px; 
     }
 
-    .pagination .current {
-        background-color: #555;
-        color: white;
+    .black-section:hover {
+      transform: rotateY(0deg) rotateX(0deg) scale(1.05); 
     }
 
-    .pagination .prev, .pagination .next {
-        background-color: #333;
-        color: white;
-        padding: 8px 12px;
-        border-radius: 5px;
+    .country-card {
+      perspective: 1000px; /* Create 3D perspective for the card */
     }
 
-    .pagination a:hover {
-        background-color: #333;
-        color: white;
+    .country-card .card {
+      transform-style: preserve-3d;
+      transition: transform 0.5s ease;
     }
+
+    .country-card:hover .card {
+      transform: rotateY(15deg) rotateX(10deg); 
+    }
+
+    .card {
+      background-color: #FFFFFF; 
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      height: 100%;
+      color: black; /* Black text for the card */
+    }
+
+   
 </style>
 <script>
    function toggleInfo(card) {
@@ -114,8 +120,8 @@ $cars = $car->getCars();
                 <!-- Navbar Links -->
                 <div>
                     <ul class="flex space-x-6">
-                        <li><a href="#" class="hover:bg-gray-700 px-4 py-2 rounded">Home</a></li>
-                        <li><a href="#" class="hover:bg-gray-700 px-4 py-2 rounded">About</a></li>
+                        <li><a href="user.php" class="hover:bg-gray-700 px-4 py-2 rounded">Home</a></li>
+                        <li><a href="showcare.php" class="hover:bg-gray-700 px-4 py-2 rounded">Explore Cars</a></li>
                         <li><a href="#" class="hover:bg-gray-700 px-4 py-2 rounded">Services</a></li>
                         <li><a href="#" class="hover:bg-gray-700 px-4 py-2 rounded">Contact</a></li>
                     </ul>
@@ -140,83 +146,144 @@ $cars = $car->getCars();
         </div>
     </section>
     <!-- Car Rental Options -->
-    <section class="container mx-auto py-16 px-4">
-    <h2 class="text-3xl font-semibold text-center mb-12">Our Cars</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Sedan Card -->
-<?php
-
-    $db = (new Database())->getConnection();
-
-    $carsPerPage = 3;  
-
-    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-
-    $offset = ($page - 1) * $carsPerPage;
-
-    $totalCarsQuery = $db->query("SELECT COUNT(*) AS total FROM vehicule");
-    $totalCars = $totalCarsQuery->fetch(PDO::FETCH_ASSOC)['total'];
-
-    $totalPages = ceil($totalCars / $carsPerPage);
-
-    $query = $db->prepare("SELECT * FROM vehicule LIMIT :offset, :carsPerPage");
-    $query->bindParam(':offset', $offset, PDO::PARAM_INT);
-    $query->bindParam(':carsPerPage', $carsPerPage, PDO::PARAM_INT);
-    $query->execute();
-    $cars = $query;
-
-    if ($cars->rowCount() > 0) {
-        while ($row = $cars->fetch(PDO::FETCH_ASSOC)) {
-            echo '
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer" onclick="toggleInfo(this)">
-                    <!-- Image and Model Name Section (Always Visible) -->
-                    <img src="' . $row['img'] . '" alt="Car image" class="w-full h-60 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2">' . $row['modele'] . '</h3>
-                        <!-- Info Section to Toggle Visibility -->
-                        <div class="info-section hidden">
-                            <p class="text-gray-400 mb-4">Prix : ' . $row['prix'] . '</p>
-                            <p class="text-gray-400 mb-4">Disponible : ' . $row['disponible'] . '</p>
-                        </div>
-                        <div class="mt-4 flex justify-center">
-                            <svg class="bg-[#fff] opacity-60" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 19.5C10 20.3284 9.32843 21 8.5 21C7.67157 21 7 20.3284 7 19.5C7 18.6716 7.67157 18 8.5 18C9.32843 18 10 18.6716 10 19.5Z" stroke="black" stroke-width="null" class="my-path"></path>
-                                <path d="M18 19.5C18 20.3284 17.3284 21 16.5 21C15.6716 21 15 20.3284 15 19.5C15 18.6716 15.6716 18 16.5 18C17.3284 18 18 18.6716 18 19.5Z" stroke="black" stroke-width="null" class="my-path"></path>
-                                <path d="M21 15H11C8.17157 15 6.75736 15 5.87868 14.1213C5 13.2426 5 11.8284 5 9V5C5 3.89543 4.10457 3 3 3" stroke="black" stroke-width="null" stroke-linecap="round" class="my-path"></path>
-                                <path d="M9 7.5C9 6.09554 9 5.39331 9.33706 4.88886C9.48298 4.67048 9.67048 4.48298 9.88886 4.33706C10.3933 4 11.0955 4 12.5 4H16.5C17.9045 4 18.6067 4 19.1111 4.33706C19.3295 4.48298 19.517 4.67048 19.6629 4.88886C20 5.39331 20 6.09554 20 7.5C20 8.90446 20 9.60669 19.6629 10.1111C19.517 10.3295 19.3295 10.517 19.1111 10.6629C18.6067 11 17.9045 11 16.5 11H12.5C11.0955 11 10.3933 11 9.88886 10.6629C9.67048 10.517 9.48298 10.3295 9.33706 10.1111C9 9.60669 9 8.90446 9 7.5Z" stroke="black" stroke-width="null" class="my-path"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>';
-        }
-    } else {
-        echo '<p class="text-white">No cars found.</p>';
-    }
-
-    echo '<div class="pagination">';
-    if ($page > 1) {
-        echo '<a href="?page=' . ($page - 1) . '" class="prev">&laquo; Previous</a>';
-    }
-
-    for ($i = 1; $i <= $totalPages; $i++) {
-        if ($i == $page) {
-            echo '<span class="current">' . $i . '</span>';
-        } else {
-            echo '<a href="?page=' . $i . '" class="page-link">' . $i . '</a>';
-        }
-    }
-
-    if ($page < $totalPages) {
-        echo '<a href="?page=' . ($page + 1) . '" class="next">Next &raquo;</a>';
-    }
-    echo '</div>';
-?>
-
-
-
-    </div>
+    <section class="container flex py-16 px-4 justify-center">
+    <a href="showcare.php"><span class="text-3xl font-semibold text-center mb-12 hover:bg-gray-700 px-4 py-2 rounded">Explore Cars</span></a>
+    
 </section>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 mx-[5px]">
 
+<!-- Country Card 1 with 3D effect -->
+
+  <div class="country-card">
+    <div class="card">
+      <img src="https://38.media.tumblr.com/783af4bdcf4d3058e5091ddfe3535fb0/tumblr_nlr9mleWgp1rwtzqno1_540.gif" alt="Country Image" class="w-full h-48 object-cover rounded-t-lg">
+      <div class="p-6">
+      <a  href="showcare.php">
+        
+        <button type="button" class="text-white bg-black  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-black dark:focus:ring-blue-800">
+        Explore Cars
+<svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+</svg>
+</button></a>
+       
+      </div>
+    </div>
+  </div>
+  <div class="country-card">
+    <div class="card">
+      <img src="https://steamuserimages-a.akamaihd.net/ugc/942823742473357672/28E0C4506B7F15D51213F7262DF0E1A98E19DF09/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt="Country Image" class="w-full h-48 object-cover rounded-t-lg">
+      <div class="p-6">
+      <a  href="showcare.php">
+        
+        <button type="button" class="text-white bg-black  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-black dark:focus:ring-blue-800">
+        Explore Cars
+<svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+</svg>
+</button></a>
+       
+      </div>
+    </div>
+  </div>
+  <div class="country-card">
+    <div class="card">
+      <img src="https://wallpapers-clan.com/wp-content/uploads/2024/04/bmw-on-street-in-rain-gif-desktop-wallpaper-preview.gif" alt="Country Image" class="w-full h-48 object-cover rounded-t-lg">
+      <div class="p-6">
+      <a  href="showcare.php">
+        
+        <button type="button" class="text-white bg-black  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-black dark:focus:ring-blue-800">
+        Explore Cars
+<svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+</svg>
+</button></a>
+       
+      </div>
+    </div>
+  </div>
+  <div class="country-card">
+    <div class="card">
+      <img src="https://i.pinimg.com/originals/fe/6b/6b/fe6b6b794fc330b9c23468b09867a4e9.gif" alt="Country Image" class="w-full h-48 object-cover rounded-t-lg">
+      <div class="p-6">
+      <a  href="showcare.php">
+        
+        <button type="button" class="text-white bg-black  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-black dark:focus:ring-blue-800">
+        Explore Cars
+<svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+</svg>
+</button></a>
+       
+      </div>
+    </div>
+  </div>
+  <div class="country-card">
+    <div class="card">
+      <img src="https://masterpiecer-images.s3.yandex.net/5fb936448ef311eeb5752656ee3db587:upscaled" alt="Country Image" class="w-full h-48 object-cover rounded-t-lg">
+      <div class="p-6">
+    
+
+        <a  href="showcare.php">
+        
+        <button type="button" class="text-white bg-black  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-black dark:focus:ring-blue-800">
+        Explore Cars
+<svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+</svg>
+</button></a>
+      </div>
+    </div>
+  </div>
+  <div class="country-card">
+    <div class="card">
+      <img src="https://imgcdn.stablediffusionweb.com/2024/11/27/0f96fdeb-e057-4728-8530-0ff852d1de78.jpg" alt="Country Image" class="w-full h-48 object-cover rounded-t-lg">
+      <div class="p-6">
+      <a  href="showcare.php">
+        
+        <button type="button" class="text-white bg-black  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-black dark:focus:ring-blue-800">
+        Explore Cars
+<svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+</svg>
+</button></a>
+       
+      </div>
+    </div>
+  </div>
+  <div class="country-card">
+    <div class="card">
+      <img src="https://pbs.twimg.com/media/GLfEDfmbEAAg3ww.jpg:large" alt="Country Image" class="w-full h-48 object-cover rounded-t-lg">
+      <div class="p-6">
+      <a  href="showcare.php">
+        
+        <button type="button" class="text-white bg-black  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-black dark:focus:ring-blue-800">
+        Explore Cars
+<svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+</svg>
+</button></a>
+       
+      </div>
+    </div>
+  </div>
+  <div class="country-card">
+    <div class="card">
+      <img src="https://masterpiecer-images.s3.yandex.net/c174cade9a2411ee89b9f6744ca365da:upscaled" alt="Country Image" class="w-full h-48 object-cover rounded-t-lg">
+      <div class="p-6">
+      <a  href="showcare.php">
+        
+        <button type="button" class="text-white bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-black dark:focus:ring-blue-800">
+        Explore Cars
+<svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+</svg>
+</button></a>
+       
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -226,13 +293,13 @@ $cars = $car->getCars();
 
     <section>
     <!-- Comment Section Container -->
-    <div class="max-w-4xl mx-auto p-6 bg-gray-900 rounded-lg shadow-lg mt-10">
+    <div class="max-w-4xl mx-auto p-6 bg-black rounded-lg shadow-lg mt-10">
         <h2 class="text-2xl font-semibold mb-6 text-white">Comments</h2>
 
         <!-- Existing Comments -->
         <div class="space-y-6">
             <!-- Comment 1 -->
-            <div class="p-4 border rounded-lg bg-gray-800 shadow-sm flex items-start">
+            <div class="p-4 border rounded-lg bg-black shadow-sm flex items-start">
                 <!-- Avatar Image -->
                 <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Doe" class="w-12 h-12 rounded-full mr-4">
                 <div>
@@ -251,7 +318,7 @@ $cars = $car->getCars();
             </div>
 
             <!-- Comment 2 -->
-            <div class="p-4 border rounded-lg bg-gray-800 shadow-sm flex items-start">
+            <div class="p-4 border rounded-lg bg-black shadow-sm flex items-start">
                 <!-- Avatar Image -->
                 <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Jane Smith" class="w-12 h-12 rounded-full mr-4">
                 <div>
@@ -270,7 +337,7 @@ $cars = $car->getCars();
             </div>
 
             <!-- Comment 3 -->
-            <div class="p-4 border rounded-lg bg-gray-800 shadow-sm flex items-start">
+            <div class="p-4 border rounded-lg bg-black shadow-sm flex items-start">
                 <!-- Avatar Image -->
                 <img src="https://randomuser.me/api/portraits/men/19.jpg" alt="Mark Johnson" class="w-12 h-12 rounded-full mr-4">
                 <div>
@@ -292,8 +359,8 @@ $cars = $car->getCars();
 </section>
 
   <!-- Container for the review section -->
-  <div class="max-w-4xl mx-auto my-12 p-6 bg-gray-800 rounded-lg shadow-lg">
-    <h2 class="text-3xl font-bold text-center text-indigo-400 mb-6">Add Your Review</h2>
+  <div class="max-w-4xl mx-auto my-12 p-6 bg-black border rounded-lg rounded-lg shadow-lg">
+    <h2 class="text-3xl font-bold text-center ">Add Your Review</h2>
 
     <!-- Review Form -->
     <form action="#" method="POST">
@@ -331,7 +398,7 @@ $cars = $car->getCars();
 
       <!-- Submit Button -->
       <div class="flex justify-center">
-        <button type="submit" class="w-full sm:w-auto px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+        <button type="submit" class="w-full sm:w-auto px-6 py-3 bg-[#fff] text-black font-semibold rounded-md  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
           Submit Review
         </button>
       </div>

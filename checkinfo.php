@@ -61,7 +61,7 @@ class Auth {
             $this->redirectBasedOnRole($user_data['roleId']);
         } else {
             $_SESSION['error'] = 'Invalid email or password';
-            header('Location: login.php');
+            header('Location: index.php');
             exit;
         }
     }

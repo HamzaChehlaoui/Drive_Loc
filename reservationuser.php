@@ -30,7 +30,27 @@
   </script>
 </head>
 <body class="bg-black text-white font-sans leading-tight tracking-tight">
-
+   <!-- Navbar -->
+   <nav class="bg-black text-white py-4">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo or Brand Name -->
+                <div class="text-2xl font-bold">
+                    <a href="#">MyWebsite</a>
+                </div>
+                
+                <!-- Navbar Links -->
+                <div>
+                    <ul class="flex space-x-6">
+                        <li><a href="user.php" class="hover:bg-gray-700 px-4 py-2 rounded">Home</a></li>
+                        <li><a href="showcare.php" class="hover:bg-gray-700 px-4 py-2 rounded">Explore Cars</a></li>
+                        <li><a href="#" class="hover:bg-gray-700 px-4 py-2 rounded">Services</a></li>
+                        <li><a href="#" class="hover:bg-gray-700 px-4 py-2 rounded">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
   <!-- Container for the reservation form -->
   <div class="max-w-4xl mx-auto my-12 p-6 bg-gray-800 rounded-lg shadow-lg">
     <h2 class="text-3xl font-bold text-center text-indigo-400 mb-6">Reserve Your Spot</h2>
@@ -88,5 +108,9 @@
     </form>
   </div>
 
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 py-6 mt-16 text-center">
+        <p>&copy; 2024 Car Rental. All rights reserved.</p>
+    </footer>
 </body>
 </html>
