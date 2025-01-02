@@ -1,3 +1,8 @@
+<?php   
+
+require('actionAddVehicles.php');
+ require('Care.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +51,8 @@
        infoSection.classList.toggle('hidden'); // Toggles visibility
    }
 </script>
-        <!-- Navbar -->
+     
+     <!-- Navbar -->
      <nav class="bg-black text-white py-4">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center">
@@ -60,7 +66,14 @@
                     <ul class="flex space-x-6">
                         <li><a href="user.php" class="hover:bg-gray-700 px-4 py-2 rounded">Home</a></li>
                         <li><a href="showcare.php" class="hover:bg-gray-700 px-4 py-2 rounded">Explore Cars</a></li>
-                        <li><a href="#" class="hover:bg-gray-700 px-4 py-2 rounded">Services</a></li>
+                        <li><a href="#" class="hover:bg-gray-700 px-4 py-2 rounded">
+                        <select name=""  required class="bg-black">
+                            <option value="" disabled selected>Category</option>
+                            <?php foreach ($categories as $category): ?>
+                                <option value="<?php echo $category['idCategorie']; ?>"><?php echo $category['nom']; ?></option>
+                            <?php endforeach; ?>
+                          </select></li></a>
+
                         <li><a href="#" class="hover:bg-gray-700 px-4 py-2 rounded">Contact</a></li>
                     </ul>
                 </div>
@@ -71,11 +84,6 @@
 
 <?php
 
-     
-
- require('conn.php');
- require('Care.php');
- 
  $db = new Database();
  $connection = $db->getConnection();
  

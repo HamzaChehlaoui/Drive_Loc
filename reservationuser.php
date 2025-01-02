@@ -56,7 +56,7 @@
     <h2 class="text-3xl font-bold text-center text-indigo-400 mb-6">Reserve Your Spot</h2>
 
     <!-- Reservation Form -->
-    <form action="#" method="POST">
+    <form action="reservation_action_user.php" method="POST">
       <!-- Customer Info Section -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
         <div>

@@ -108,8 +108,8 @@
 </script>
 <body class="bg-black text-[#fff]">
 
-    <!-- Navbar -->
-    <nav class="bg-black text-white py-4">
+       <!-- Navbar -->
+       <nav class="bg-black text-white py-4">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center">
                 <!-- Logo or Brand Name -->
