@@ -7,7 +7,6 @@ class Car {
         $this->conn = $db;
     }
 
-    // Get all cars
     public function getCars() {
         $query = "SELECT * FROM vehicule"; 
         $stmt = $this->conn->prepare($query);
@@ -15,7 +14,6 @@ class Car {
         return $stmt;
     }
 
-    // Get a specific car by ID
     public function getCarById($id) {
         $query = "SELECT * FROM vehicule WHERE idVehicule = :id";
         $stmt = $this->conn->prepare($query);
@@ -40,7 +38,8 @@ class Car {
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
-    
+
+
 }
 
 

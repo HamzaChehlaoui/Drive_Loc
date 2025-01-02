@@ -10,6 +10,7 @@ require('actionAddVehicles.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Document</title>
+
 </head>
 <body class="bg-black text-[#fff]">
     <style>
@@ -45,12 +46,7 @@ require('actionAddVehicles.php');
         color: white;
     }
     </style>
-    <script>
-   function toggleInfo(card) {
-       let infoSection = card.querySelector('.info-section');
-       infoSection.classList.toggle('hidden'); // Toggles visibility
-   }
-</script>
+
      
      <!-- Navbar -->
      <nav class="bg-black text-white py-4">
@@ -67,20 +63,22 @@ require('actionAddVehicles.php');
                         <li><a href="user.php" class="hover:bg-gray-700 px-4 py-2 rounded">Home</a></li>
                         <li><a href="showcare.php" class="hover:bg-gray-700 px-4 py-2 rounded">Explore Cars</a></li>
                         <li><a href="#" class="hover:bg-gray-700 px-4 py-2 rounded">
-                        <select name=""  required class="bg-black">
-                            <option value="" disabled selected>Category</option>
-                            <?php foreach ($categories as $category): ?>
-                                <option value="<?php echo $category['idCategorie']; ?>"><?php echo $category['nom']; ?></option>
-                            <?php endforeach; ?>
-                          </select></li></a>
-
-                        <li><a href="#" class="hover:bg-gray-700 px-4 py-2 rounded">Contact</a></li>
+    <!-- Filter Category -->
+    <select id="categoryFilter" name="category" class="bg-black">
+        <option value="" disabled selected>Category</option>
+        <?php foreach ($categories as $category): ?>
+            <option value="<?php echo $category['idCategorie']; ?>"><?php echo $category['nom']; ?></option>
+        <?php endforeach; ?>
+    </select>
+</a></li>
+<a href="#" class="hover:bg-gray-700 px-4 py-2 rounded">Contact</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div  id="carResults" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+ 
 
 <?php
 
@@ -114,6 +112,7 @@ require('actionAddVehicles.php');
   if ($cars->rowCount() > 0) {
       while ($row = $cars->fetch(PDO::FETCH_ASSOC)) {
           echo '
+          
               <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer" onclick="toggleInfo(this)">
                   <!-- Image and Model Name Section (Always Visible) -->
                   <img src="' . $row['img'] . '" alt="Car image" class="w-full h-60 object-cover">
@@ -163,6 +162,27 @@ require('actionAddVehicles.php');
   <footer class="bg-gray-800 py-6 mt-16 text-center">
         <p>&copy; 2024 Car Rental. All rights reserved.</p>
     </footer>
+    <script>
+   function toggleInfo(card) {
+       let infoSection = card.querySelector('.info-section');
+       infoSection.classList.toggle('hidden'); 
+       
+   }
+   document.getElementById('categoryFilter').addEventListener('change', function() {
+    var categoryId = this.value;
+    console.log('Selected category ID:', categoryId);
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'getCarsByCategory.php?category=' + categoryId, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log('AJAX Response:', xhr.responseText);  
+            document.getElementById('carResults').innerHTML = xhr.responseText;
+        }
+    };
+    xhr.send();
+ });
+
+</script>
 </body>
 </html>
 

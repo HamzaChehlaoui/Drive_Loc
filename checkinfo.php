@@ -12,7 +12,7 @@ class User {
     }
 
     public function setEmail($email) {
-        $this->email = $email; 
+        $this->email = $email;
     }
 
     public function setPassword($password) {
