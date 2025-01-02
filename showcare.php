@@ -113,7 +113,7 @@ require('actionAddVehicles.php');
       while ($row = $cars->fetch(PDO::FETCH_ASSOC)) {
           echo '
           
-              <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer" onclick="toggleInfo(this)">
+              <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer car-card" onclick="toggleInfo(this)">
                   <!-- Image and Model Name Section (Always Visible) -->
                   <img src="' . $row['img'] . '" alt="Car image" class="w-full h-60 object-cover">
                   <div class="p-4">
@@ -163,24 +163,32 @@ require('actionAddVehicles.php');
         <p>&copy; 2024 Car Rental. All rights reserved.</p>
     </footer>
     <script>
-   function toggleInfo(card) {
-       let infoSection = card.querySelector('.info-section');
-       infoSection.classList.toggle('hidden'); 
-       
-   }
-   document.getElementById('categoryFilter').addEventListener('change', function() {
+ document.getElementById('categoryFilter').addEventListener('change', function() {
     var categoryId = this.value;
-    console.log('Selected category ID:', categoryId);
+
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'getCarsByCategory.php?category=' + categoryId, true);
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log('AJAX Response:', xhr.responseText);  
+            
             document.getElementById('carResults').innerHTML = xhr.responseText;
+            
+          
+            document.querySelectorAll('.car-card').forEach(function(card) {
+                card.addEventListener('click', function() {
+                    toggleInfo(card);
+                });
+            });
         }
     };
     xhr.send();
- });
+});
+
+function toggleInfo(card) {
+    let infoSection = card.querySelector('.info-section');
+    console.log('hamza');
+    infoSection.classList.toggle('hidden'); 
+}
 
 </script>
 </body>

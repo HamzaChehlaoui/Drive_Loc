@@ -15,7 +15,7 @@ if (isset($_GET['category'])) {
     if ($query->rowCount() > 0) {
         while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
             echo '
-                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer">
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer car-card">
                     <img src="' . $row['img'] . '" alt="Car image" class="w-full h-60 object-cover">
                     <div class="p-4">
                         <h3 class="text-xl font-semibold mb-2">' . $row['modele'] . '</h3>
