@@ -4,8 +4,6 @@ require('actionAddVehicles.php');
  require('care.php');
  
 
-  
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
