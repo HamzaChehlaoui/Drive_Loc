@@ -1,7 +1,8 @@
 <?php 
-  // require('conn.php');
-  // session_start();
-  //  $_SESSION['user_id'] ;
+if (isset($_GET['idVehicule'])) {
+    $idVehicule = $_GET['idVehicule'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,13 +62,15 @@
     <h2 class="text-3xl font-bold text-center text-indigo-400 mb-6">Reserve Your Spot</h2>
 
     <!-- Reservation Form -->
-    <form action="reservation_action_user.php" method="POST">
+    <form action="reservation_action_user.php?idVehicule=<?php echo $idVehicule; ?>" method="POST">
+
       <!-- Customer Info Section -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
         <div>
           <label for="name" class="block text-lg font-medium text-gray-300">Full Name</label>
           <input type="text" id="name" name="name" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter your full name" required>
         </div>
+         
         <div>
           <label for="email" class="block text-lg font-medium text-gray-300">Email Address</label>
           <input type="email" id="email" name="email" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter your email" required>
@@ -106,7 +109,7 @@
 
       <!-- Submit Button -->
       <div class="flex justify-center">
-        <button type="submit" class="w-full sm:w-auto px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+        <button type="submit" name="submit" class="w-full sm:w-auto px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
           Reserve Now
         </button>
       </div>

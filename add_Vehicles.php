@@ -1,5 +1,5 @@
 <?php
-include('actionAddVehicles.php');
+require('actionAddVehicles.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

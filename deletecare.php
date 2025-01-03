@@ -1,6 +1,6 @@
 <?php
-include('conn.php');
-include('Care.php');
+require('conn.php');
+require('Care.php');
 
 $db = new Database();
 $connection = $db->getConnection();

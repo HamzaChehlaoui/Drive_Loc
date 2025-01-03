@@ -1,7 +1,7 @@
 <?php   
 
 require('actionAddVehicles.php');
- require('Care.php');
+ require('care.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,6 +75,7 @@ require('actionAddVehicles.php');
                     </ul>
                 </div>
             </div>
+           
         </div>
     </nav>
     <div  id="carResults" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -122,8 +123,9 @@ require('actionAddVehicles.php');
                       <div class="info-section hidden">
                           <p class="text-gray-400 mb-4">Prix : ' . $row['prix'] . '</p>
                           <p class="text-gray-400 mb-4">Disponible : ' . $row['disponible'] . '</p>
+                           
                       </div>
-                      <a href="reservationuser.php">
+                       <a href="reservationuser.php?idVehicule=' . htmlspecialchars($row['idVehicule']).'">
                        <div class="mt-4 flex justify-center">
                           <svg class="bg-[#fff] opacity-60" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M10 19.5C10 20.3284 9.32843 21 8.5 21C7.67157 21 7 20.3284 7 19.5C7 18.6716 7.67157 18 8.5 18C9.32843 18 10 18.6716 10 19.5Z" stroke="black" stroke-width="null" class="my-path"></path>
@@ -189,7 +191,6 @@ function toggleInfo(card) {
     console.log('hamza');
     infoSection.classList.toggle('hidden'); 
 }
-
 </script>
 </body>
 </html>

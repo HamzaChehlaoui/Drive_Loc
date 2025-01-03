@@ -1,7 +1,8 @@
 <?php
 require_once('conn.php');
-session_start();
-
+if (isset($_GET['idVehicule'])) {
+    $idVehicule = $_GET['idVehicule'];
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $pickup_date = $_POST['pickup_date'];
@@ -9,8 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pickup_location = $_POST['pickup_location'];
     $return_location = $_POST['return_location'];
     $notes = $_POST['notes'];
-    $statut='statut';
-    $iduser=  ($_SESSION['user_id']) ;
+    $statut='Processing';
+    $vehicule=   $idVehicule ;
 
     $database = new Database();
     
@@ -18,8 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn) {
         try {
-            $stmt = $conn->prepare("INSERT INTO reservation ( dateDebut, dateFin, Pickup_location, Return_location, Additional_notes, statut, userId) 
-                                    VALUES (:pickup_date, :return_date, :pickup_location, :return_location, :notes ,:statut, :iduser)");
+            $stmt = $conn->prepare("INSERT INTO reservation ( dateDebut, dateFin, Pickup_location, Return_location, Additional_notes, statut, vehiculeId) 
+                                    VALUES (:pickup_date, :return_date, :pickup_location, :return_location, :notes ,:statut, :vehicule)");
 
     
             $stmt->bindParam(':pickup_date', $pickup_date);
@@ -28,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(':return_location', $return_location);
             $stmt->bindParam(':notes', $notes);
             $stmt->bindParam(':statut', $statut);
-            $stmt->bindParam(':iduser', $iduser);
+            $stmt->bindParam(':vehicule', $vehicule);
 
             $stmt->execute();
 
@@ -43,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $conn = null;
 } else {
-    header("Location: reservation_page.php");
+    header("Location: reservationuser.php");
     exit;
 }
 ?>
