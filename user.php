@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,7 +122,7 @@
                         <li><a href="user.php" class="hover:bg-gray-700 px-4 py-2 rounded">Home</a></li>
                         <li><a href="showcare.php" class="hover:bg-gray-700 px-4 py-2 rounded">Explore Cars</a></li>
                         <li><a href="#" class="hover:bg-gray-700 px-4 py-2 rounded">Services</a></li>
-                        <li><a href="#" class="hover:bg-gray-700 px-4 py-2 rounded">Contact</a></li>
+                        <li><a href="showReserv.php" class="hover:bg-gray-700 px-4 py-2 rounded">Reservation</a></li>
                     </ul>
                 </div>
             </div>

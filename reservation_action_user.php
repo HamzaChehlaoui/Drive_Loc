@@ -1,5 +1,8 @@
 <?php
+
 require_once('conn.php');
+session_start();
+$id_userr= $_SESSION['idUser'];
 if (isset($_GET['idVehicule'])) {
     $idVehicule = $_GET['idVehicule'];
 }
@@ -19,8 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn) {
         try {
-            $stmt = $conn->prepare("INSERT INTO reservation ( dateDebut, dateFin, Pickup_location, Return_location, Additional_notes, statut, vehiculeId) 
-                                    VALUES (:pickup_date, :return_date, :pickup_location, :return_location, :notes ,:statut, :vehicule)");
+            $stmt = $conn->prepare("INSERT INTO reservation ( dateDebut, dateFin, Pickup_location, Return_location, Additional_notes, statut, vehiculeId, userId) 
+                                    VALUES (:pickup_date, :return_date, :pickup_location, :return_location, :notes ,:statut, :vehicule, :id_userr)");
 
     
             $stmt->bindParam(':pickup_date', $pickup_date);
@@ -30,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(':notes', $notes);
             $stmt->bindParam(':statut', $statut);
             $stmt->bindParam(':vehicule', $vehicule);
+            $stmt->bindParam(':id_userr', $id_userr);
 
             $stmt->execute();
 

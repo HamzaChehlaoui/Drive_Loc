@@ -21,10 +21,10 @@ class User {
 
     public function authenticate() {
 
-        $stmt = $this->conn->prepare("SELECT  emeil, motDepasse, roleId FROM `user` WHERE emeil = :email");
+        $stmt = $this->conn->prepare("SELECT * FROM `user` WHERE emeil = :email");
         $stmt->bindParam(':email', $this->email, PDO::PARAM_STR);
         $stmt->execute();
-
+        
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -33,7 +33,8 @@ class User {
             
                 'emeil' => $row['emeil'],
                 'motDepasse' => $row['motDepasse'],
-                'roleId' => $row['roleId']
+                'roleId' => $row['roleId'],
+                'idUser' => $row['idUser']
             ];
         }
 
@@ -57,7 +58,7 @@ class Auth {
 
         if ($user_data && password_verify($input_password, $user_data['motDepasse'])) {
             $_SESSION['emeil'] = $user_data['emeil'];
-            // $_SESSION['user_id'] = $user_data['idUser'];
+            $_SESSION['idUser'] = $user_data['idUser'];
             $this->redirectBasedOnRole($user_data['roleId']);
         } else {
             $_SESSION['error'] = 'Invalid email or password';
