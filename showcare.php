@@ -51,7 +51,7 @@ require('actionAddVehicles.php');
 
      
      <!-- Navbar -->
-     <nav class="bg-black text-white py-4">
+    <nav class="bg-black text-white py-4">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center">
                 <!-- Logo or Brand Name -->
@@ -79,6 +79,23 @@ require('actionAddVehicles.php');
             </div>
            
         </div>
+        <br>
+            <div>
+
+                <form action="searchCars.php" method="GET" class="flex items-center space-x-4">
+                  <input 
+                    type="text" 
+                    name="search" 
+                    placeholder="Search cars..." 
+                    class="px-4 py-2 rounded bg-gray-800 text-white placeholder-gray-400" 
+                    required
+                  />
+                  <button type="submit" class="bg-blue-600 px-4 py-2 rounded text-white hover:bg-blue-700">
+                    Search
+                  </button>
+                </form>
+            </div>
+
     </nav>
     <div  id="carResults" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
  
@@ -162,11 +179,8 @@ require('actionAddVehicles.php');
   echo '</div>';
 ?>
  </div>
-  <!-- Footer Section -->
-  <footer class="bg-gray-800 py-6 mt-16 text-center">
-        <p>&copy; 2024 Car Rental. All rights reserved.</p>
-    </footer>
-    <script>
+
+<script>
  document.getElementById('categoryFilter').addEventListener('change', function() {
     var categoryId = this.value;
 
@@ -194,6 +208,10 @@ function toggleInfo(card) {
     infoSection.classList.toggle('hidden'); 
 }
 </script>
+  <!-- Footer Section -->
+  <footer class="bg-gray-800 py-6 mt-16 text-center  bottom-0 w-full">
+        <p>&copy; 2024 Car Rental. All rights reserved.</p>
+    </footer>
 </body>
 </html>
 

@@ -40,11 +40,10 @@ $reservation = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
     </nav>
-  <!-- Container for the booking list -->
+
   <div class="max-w-6xl mx-auto my-12 p-6 bg-gray-800 rounded-lg shadow-lg">
     <h2 class="text-3xl font-bold text-center text-indigo-400 mb-6">Booking Details</h2>
 
-    <!-- Table to display bookings -->
     <div class="overflow-x-auto bg-gray-900 rounded-lg">
       <table class="min-w-full table-auto">
         <thead>
