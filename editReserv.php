@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Update reservation
     $dateDebut = $_POST['dateDebut'];
     $dateFin = $_POST['dateFin'];
-    $statut = $_POST['statut'];
+    $statut = 'Processing';
     $pickupLocation = $_POST['pickupLocation'];
     $returnLocation = $_POST['returnLocation'];
 
