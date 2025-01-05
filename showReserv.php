@@ -23,12 +23,9 @@ $reservation = $stmt->fetchAll(PDO::FETCH_ASSOC);
    <nav class="bg-black text-white py-4">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center">
-                <!-- Logo or Brand Name -->
                 <div class="text-2xl font-bold">
                     <a href="#">MyWebsite</a>
                 </div>
-                
-                <!-- Navbar Links -->
                 <div>
                     <ul class="flex space-x-6">
                         <li><a href="user.php" class="hover:bg-gray-700 px-4 py-2 rounded">Home</a></li>
@@ -53,6 +50,7 @@ $reservation = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <th class="px-6 py-3 text-left text-sm font-medium">Statut</th>
             <th class="px-6 py-3 text-left text-sm font-medium">Pickup Location</th>
             <th class="px-6 py-3 text-left text-sm font-medium">Return Location</th>
+            <th class="px-6 py-3 text-left text-sm font-medium">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -64,18 +62,23 @@ $reservation = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <td class="px-6 py-4 text-sm text-gray-400"><?= $row['statut']; ?></td>
               <td class="px-6 py-4 text-sm text-gray-400"><?= $row['Pickup_Location']; ?></td>
               <td class="px-6 py-4 text-sm text-gray-400"><?= $row['Return_Location']; ?></td>
+              <td class="px-6 py-4 text-sm text-gray-400">
+                <!-- Edit Link -->
+                <a href="editReserv.php?id=<?= $row['idReservation']; ?>" class="text-yellow-400 hover:text-yellow-500">Edit</a> |
+                </td>
             </tr>
           <?php } ?>
         <?php } else { ?>
-          <tr><td colspan="3" class="text-center text-gray-400">No reservations found.</td></tr>
+          <tr><td colspan="6" class="text-center text-gray-400">No reservations found.</td></tr>
         <?php } ?>
         </tbody>
       </table>
     </div>
   </div>
-    <!-- Footer Section -->
-    <footer class="bg-gray-800 py-6 mt-16 text-center absolute bottom-0 w-full">
-        <p>&copy; 2024 Car Rental. All rights reserved.</p>
-    </footer>
+
+  <!-- Footer Section -->
+  <footer class="bg-gray-800 py-6 mt-16 text-center absolute bottom-0 w-full">
+      <p>&copy; 2024 Car Rental. All rights reserved.</p>
+  </footer>
 </body>
 </html>
