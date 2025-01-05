@@ -120,22 +120,8 @@
        infoSection.classList.toggle('hidden'); // Toggles visibility
 
    }
- 
-document.getElementById("carForm").addEventListener("submit", function(event) {
-let carSelect = document.getElementById("car");
-let carValue = carSelect.value;
 
-if (carValue != "") {
-  Swal.fire({
-    title: 'erour!',
-    text: 'no.',
-    icon: 'error',
-    confirmButtonText: 'ok'
-  });
-
-  event.preventDefault();
-}
-});
+;
 
 
 </script>
