@@ -401,9 +401,9 @@ if (carValue != "") {
                             <p class="text-gray-400 mt-2"><?php echo htmlspecialchars($row['commentaire']); ?></p>
                             <div class="mt-2">
                                 <?php
-                                    $stars = str_repeat('&#9733;', (int)$row['note']);
-                                    $emptyStars = str_repeat('&#9733;', 5 - (int)$row['note']);
-                                    echo "<span class='text-yellow-400'>{$stars}{$emptyStars}</span>";
+                                   $stars = str_repeat('&#9733;', (int)$row['note']);
+                                   
+                                    echo "<span class='text-yellow-400'>{$stars}</span>";
                                 ?>
                             </div>
                             <div class="mt-4 text-sm text-gray-500">Posted on <?php echo htmlspecialchars($row['dateAvis']); ?></div>
