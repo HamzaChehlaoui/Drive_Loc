@@ -12,6 +12,7 @@ $statistics = new Statistics($conn);
 $totalReservations = $statistics->getTotalReservations();
 $totalVehicules = $statistics->getTotalVehicules();
 $totalAvis = $statistics->getTotalAvis();
+$avis= $statistics->getavis();
 
 $reservationManager = new ReservationManager($conn);
 
@@ -90,6 +91,17 @@ $reservations = $reservationManager->getReservations();
                         <h4 class="text-xl font-semibold mb-4">Total Reviews</h4>
                         <p class="text-xl font-bold"><?php echo $totalAvis; ?></p>
                     </div>
+                </div>
+            </section>
+            <section id="statistiques" class="mb-12">
+                <h3 class="text-xl font-semibold mb-6">Avis</h3>
+                <div class="grid grid-cols-3 gap-6">
+                <?php foreach ($avis as $row) { ?>
+                    <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                        <h4 class="text-xl font-semibold mb-4"><?php echo $row['note']; ?>/5</h4>
+                        <p class="text-xl font-bold"><?php echo $row['commentaire']; ?></p>
+                    </div>
+                    <?php }?>
                 </div>
             </section>
 

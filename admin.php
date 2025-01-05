@@ -79,7 +79,6 @@ $cars = $car->getCars();
                     <ul class="flex space-x-6">
                         <li><a href="admin.php" class="hover:bg-gray-700 px-4 py-2 rounded">Home</a></li>
                         <li><a href="add_Vehicles.php" class="hover:bg-gray-700 px-4 py-2 rounded">Add Vehicles</a></li>
-                        <li><a href="#" class="hover:bg-gray-700 px-4 py-2 rounded"> Reservations</a></li>
                         <li><a href="Add_Category.php" class="hover:bg-gray-700 px-4 py-2 rounded">Add Category </a></li>
                         <li><a href="statis.php" class="hover:bg-gray-700 px-4 py-2 rounded">Admin Dashboard </a></li>
                     </ul>

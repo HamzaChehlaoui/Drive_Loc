@@ -35,5 +35,15 @@ class Statistics {
             return "erour";
         }
     }
+    public function getavis() {
+        $query = "SELECT * FROM Avis";
+        $result = $this->conn->query($query);
+        if($result) {
+            return $result->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return "error";
+        }
+    }
+    
 }
 ?>
