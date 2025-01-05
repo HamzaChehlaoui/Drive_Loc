@@ -8,7 +8,6 @@ $car = new Car($connection);
 
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
 
-// Set pagination variables
 $carsPerPage = 3;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $carsPerPage;

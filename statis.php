@@ -1,3 +1,20 @@
+<?php
+
+require('conn.php');
+require('statisclass.php');
+
+$database = new Database();
+$conn = $database->getConnection();
+
+$statistics = new Statistics($conn);
+
+$totalReservations = $statistics->getTotalReservations();
+$totalVehicules = $statistics->getTotalVehicules();
+$totalAvis = $statistics->getTotalAvis();
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -17,7 +34,6 @@
                 <li><a href="#reservations" class="block py-2 px-4 hover:bg-gray-700">Réservations</a></li>
                 <li><a href="#vehicules" class="block py-2 px-4 hover:bg-gray-700">Véhicules</a></li>
                 <li><a href="#avis" class="block py-2 px-4 hover:bg-gray-700">Avis</a></li>
-                <li><a href="#categories" class="block py-2 px-4 hover:bg-gray-700">Catégories</a></li>
                 <li><a href="#statistiques" class="block py-2 px-4 hover:bg-gray-700">Statistiques</a></li>
             </ul>
         </aside>
@@ -29,26 +45,22 @@
                 <div class="grid grid-cols-3 gap-6">
                     <div class="bg-white p-6 rounded-lg shadow-lg">
                         <h4 class="text-xl font-semibold mb-4">Total Réservations</h4>
-                        <p class="text-3xl font-bold">123</p>
+                        <p class="text-3xl font-bold"><?php echo $totalReservations; ?></p>
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow-lg">
                         <h4 class="text-xl font-semibold mb-4">Total Véhicules</h4>
-                        <p class="text-3xl font-bold">56</p>
+                        <p class="text-3xl font-bold"><?php echo $totalVehicules; ?></p>
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow-lg">
                         <h4 class="text-xl font-semibold mb-4">Total Avis</h4>
-                        <p class="text-3xl font-bold">89</p>
+                        <p class="text-3xl font-bold"><?php echo $totalAvis; ?></p>
                     </div>
                 </div>
             </section>
-
-
-         
-
-        
-         
         </main>
     </div>
+
+   
 </body>
 
 </html>

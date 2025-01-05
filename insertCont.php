@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
     $response = $user->register(); 
 
     
-    header("Location:/front_and/user.php");
+    header("Location:user.php");
     exit;  
 
     echo "<div class='text-center mt-4'>" . $response . "</div>";

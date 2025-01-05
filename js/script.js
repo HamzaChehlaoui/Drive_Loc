@@ -1,5 +1,4 @@
 
-
 document.addEventListener('DOMContentLoaded', function () {
   const stars = document.querySelectorAll('.star');
   const ratingInput = document.getElementById('rating');
@@ -36,3 +35,18 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+// document.getElementById("carForm").addEventListener("submit", function(event) {
+// let carSelect = document.getElementById("car");
+// let carValue = carSelect.value;
+
+// if (carValue === "") {
+//   Swal.fire({
+//     title: 'erour!',
+//     text: 'no.',
+//     icon: 'error',
+//     confirmButtonText: 'ok'
+//   });
+
+//   event.preventDefault();
+// }
+// });

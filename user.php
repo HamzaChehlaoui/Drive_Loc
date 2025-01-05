@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Black Navbar</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    
 </head>
 <style>
@@ -103,7 +104,26 @@
    function toggleInfo(card) {
        let infoSection = card.querySelector('.info-section');
        infoSection.classList.toggle('hidden'); // Toggles visibility
+
    }
+ 
+document.getElementById("carForm").addEventListener("submit", function(event) {
+let carSelect = document.getElementById("car");
+let carValue = carSelect.value;
+
+if (carValue != "") {
+  Swal.fire({
+    title: 'erour!',
+    text: 'no.',
+    icon: 'error',
+    confirmButtonText: 'ok'
+  });
+
+  event.preventDefault();
+}
+});
+
+
 </script>
 <body class="bg-black text-[#fff]">
 
@@ -365,13 +385,13 @@
       
       <!-- Car Selection Section (Optional) -->
       <div class="mb-6">
-        <label for="car" class="block text-lg font-medium text-gray-300">Car Model</label>
-        <select id="car" name="car" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" required>
-          <option value="car1">Car Model 1</option>
-          <option value="car2">Car Model 2</option>
-          <option value="car3">Car Model 3</option>
-        </select>
-      </div>
+    <label for="car" class="block text-lg font-medium text-gray-300">Car Model</label>
+    <select id="car" name="car" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" required>
+      <option value="">Select a car</option>
+      <option value="k">lk</option>
+   
+    </select>
+  </div>
 
       <!-- Rating Section -->
       <div class="mb-6">
@@ -396,7 +416,7 @@
 
       <!-- Submit Button -->
       <div class="flex justify-center">
-        <button type="submit" class="w-full sm:w-auto px-6 py-3 bg-[#fff] text-black font-semibold rounded-md  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
+        <button type="submit" name="submit" class="w-full sm:w-auto px-6 py-3 bg-[#fff] text-black font-semibold rounded-md  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
           Submit Review
         </button>
       </div>
@@ -410,6 +430,7 @@
     <footer class="bg-gray-800 py-6 mt-16 text-center">
         <p>&copy; 2024 Car Rental. All rights reserved.</p>
     </footer>
+
 <script src="js/script.js"></script>
 </body>
 </html>
