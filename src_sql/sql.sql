@@ -38,7 +38,8 @@ CREATE TABLE Avis (
     idAvis INT AUTO_INCREMENT PRIMARY KEY ,
     note INT NOT NULL ,
     commentaire TEXT ,
-    dateAvis DATE vehiculeId INT ,
+    dateAvis DATE,
+    vehiculeId INT ,
     userId INT ,
     FOREIGN KEY (vehiculeId) REFERENCES Vehicule(idVehicule),
     FOREIGN KEY (userId) REFERENCES user(iduser)

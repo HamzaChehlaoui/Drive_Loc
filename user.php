@@ -1,3 +1,17 @@
+<?php 
+    require('conn.php');  
+
+    $database = new Database();
+    $conn = $database->getConnection();
+
+    $sql = "SELECT a.commentaire, a.note, a.dateAvis, u.nom
+            FROM Avis a
+            JOIN user u ON a.userId = u.iduser
+            ORDER BY a.dateAvis DESC";
+
+    $result = $conn->query($sql); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -141,7 +155,6 @@ if (carValue != "") {
                     <ul class="flex space-x-6">
                         <li><a href="user.php" class="hover:bg-gray-700 px-4 py-2 rounded">Home</a></li>
                         <li><a href="showcare.php" class="hover:bg-gray-700 px-4 py-2 rounded">Explore Cars</a></li>
-                        <li><a href="#" class="hover:bg-gray-700 px-4 py-2 rounded">Services</a></li>
                         <li><a href="showReserv.php" class="hover:bg-gray-700 px-4 py-2 rounded">Reservation</a></li>
                     </ul>
                 </div>
@@ -309,7 +322,7 @@ if (carValue != "") {
 
 
 
-    <section>
+<section>
     <!-- Comment Section Container -->
     <div class="max-w-4xl mx-auto p-6 bg-black rounded-lg shadow-lg mt-10">
         <h2 class="text-2xl font-semibold mb-6 text-white">Comments</h2>
@@ -375,53 +388,34 @@ if (carValue != "") {
         </div>
     </div>
 </section>
+<section>
+    <div class="max-w-4xl mx-auto p-6 bg-black rounded-lg shadow-lg mt-10">
 
-  <!-- Container for the review section -->
-  <div class="max-w-4xl mx-auto my-12 p-6 bg-black border rounded-lg rounded-lg shadow-lg">
-    <h2 class="text-3xl font-bold text-center ">Add Your Review</h2>
-
-    <!-- Review Form -->
-    <form action="#" method="POST">
-      
-      <!-- Car Selection Section (Optional) -->
-      <div class="mb-6">
-    <label for="car" class="block text-lg font-medium text-gray-300">Car Model</label>
-    <select id="car" name="car" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" required>
-      <option value="">Select a car</option>
-      <option value="k">lk</option>
-   
-    </select>
-  </div>
-
-      <!-- Rating Section -->
-      <div class="mb-6">
-        <label for="rating" class="block text-lg font-medium text-gray-300">Rating (1 to 5 stars)</label>
-        <div class="flex items-center">
-          <!-- Star Rating -->
-          <input type="hidden" id="rating" name="rating" value="0" required>
-
-          <span class="star cursor-pointer text-3xl">★</span>
-          <span class="star cursor-pointer text-3xl">★</span>
-          <span class="star cursor-pointer text-3xl">★</span>
-          <span class="star cursor-pointer text-3xl">★</span>
-          <span class="star cursor-pointer text-3xl">★</span>
-        </div>
-      </div>
-
-      <!-- Review Section -->
-      <div class="mb-6">
-        <label for="review" class="block text-lg font-medium text-gray-300">Your Review</label>
-        <textarea id="review" name="review" rows="4" class="mt-1 block w-full px-4 py-3 rounded-md border border-gray-600 bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" placeholder="Write your review here" required></textarea>
-      </div>
-
-      <!-- Submit Button -->
-      <div class="flex justify-center">
-        <button type="submit" name="submit" class="w-full sm:w-auto px-6 py-3 bg-[#fff] text-black font-semibold rounded-md  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
-          Submit Review
-        </button>
-      </div>
-    </form>
-  </div>
+        <?php if ($result->rowCount() > 0): ?>
+            <div class="space-y-6">
+                <?php while($row = $result->fetch(PDO::FETCH_ASSOC)): ?>
+                    <div class="p-4 border rounded-lg bg-black shadow-sm flex items-start">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaEmzjpUf5XiWcRFKWeDt-Pxf4_cG77GIlsQ&s" alt="" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <p class="font-semibold text-white"><?php echo htmlspecialchars($row['nom']); ?></p>
+                            <p class="text-gray-400 mt-2"><?php echo htmlspecialchars($row['commentaire']); ?></p>
+                            <div class="mt-2">
+                                <?php
+                                    $stars = str_repeat('&#9733;', (int)$row['note']);
+                                    $emptyStars = str_repeat('&#9733;', 5 - (int)$row['note']);
+                                    echo "<span class='text-yellow-400'>{$stars}{$emptyStars}</span>";
+                                ?>
+                            </div>
+                            <div class="mt-4 text-sm text-gray-500">Posted on <?php echo htmlspecialchars($row['dateAvis']); ?></div>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            </div>
+        <?php else: ?>
+            <p class="text-white">No comments available at the moment.</p>
+        <?php endif; ?>
+    </div>
+</section>
 
 
 
